@@ -173,6 +173,8 @@ header .downlad-btn:hover{ -webkit-transform: translateY(-4px); transform: trans
 
 .portfolio-section .p-item a{ display: inline; }
 
+.portfolio-section .p-item img { cursor: pointer; }
+
 .portfolio-section .p-item.p-item-2 .img:first-child{ float: left; width: 50%; padding-right: 7.5px; }
 
 .portfolio-section .p-item.p-item-2 .img:last-child{ float: right; width: 50%; padding-left: 7.5px; }
