@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: update contribs
         run: |
+          sudo apt install python3-setuptools
           pip3 install pygithub
           python3 featch_contribs.py ${{ secrets.GIT_TOKEN }}
           python3 create_html.py ${{ secrets.GIT_TOKEN }}
