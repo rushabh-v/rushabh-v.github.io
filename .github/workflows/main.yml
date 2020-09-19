@@ -11,8 +11,8 @@ jobs:
       - uses: actions/setup-node@v1
       - name: Get Updates
         run: |
-          sudo apt install python3-setuptools wheel
-          pip3 install pygithub
+          sudo apt install python3-setuptools
+          pip3 install pygithub wheel
           python3 fetch_contribs.py ${{ secrets.GIT_TOKEN }}
           python3 create_html.py ${{ secrets.GIT_TOKEN }}
       - name: Commit
