@@ -135,7 +135,7 @@ if __name__ == '__main__':
     pr_keys = sorted(prs.keys(), key=get_count_pr, reverse=True)
     issues_keys = sorted(issues.keys(), key=get_count_issue, reverse=True)
 
-    f = open("./starting.html", "r")
+    f = open("starting.html", "r")
     html = f.read() + start
     for key in pr_keys:
         html += add_row(prs, key, True)
@@ -143,5 +143,5 @@ if __name__ == '__main__':
     for key in issues_keys:
         html += add_row(issues, key, False)
     html += end
-    with open('./contributions.html', 'w') as f:
+    with open('contributions.html', 'w') as f:
         f.write(html)
