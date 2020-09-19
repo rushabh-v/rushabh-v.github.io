@@ -73,10 +73,12 @@ def add_row(contribs, key, is_pr):
     n_days = contribs[key]['last_mod']
     stars = contribs[key]['stars']
     last_mod = ''
-    cur_contrib += (n_merged + n_open + n_closed)
     if n_days > 30: last_mod = str(n_days // 30) + " months ago"
     else: last_mod = str(n_days) + " days ago"
-    if is_pr and n_merged == 0: return ""
+
+    if is_pr and n_merged == 0:
+        return "", (n_merged + n_open + n_closed)
+
     lang_color = (lang_colors[lang] if lang in lang_colors
                      else 'rgb(0,255,0)')
 
@@ -122,7 +124,7 @@ def add_row(contribs, key, is_pr):
                             <div class="f6 mt-1">{}</div>
                         </div>
                     </div>""".format(lang_color, lang, stars, last_mod)
-    return repo_html
+    return repo_html, (n_merged + n_open + n_closed)
 
 if __name__ == '__main__':
     with open('my_contribs.json', 'r') as j:
@@ -141,11 +143,18 @@ if __name__ == '__main__':
 
     f = open("starting.html", "r")
     html = f.read() + start
+
     for key in pr_keys:
-        html += add_row(prs, key, True)
+        code, count = add_row(prs, key, True)
+        html += code
+        cur_contrib += count
+
     html += mid
     for key in issues_keys:
-        html += add_row(issues, key, False)
+        code, count = add_row(issues, key, False)
+        html += code
+        cur_contrib += count
+
     html += end
 
     if prev_contrib == cur_contrib:
