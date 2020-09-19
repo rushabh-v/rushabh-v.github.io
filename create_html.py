@@ -3,7 +3,7 @@ from github import Github
 
 import json
 
-with open('total_contrib', 'r') as f:
+with open('total_contribs', 'r') as f:
     prev_contrib = int(f.read())
 
 g = Github(sys.argv[1])

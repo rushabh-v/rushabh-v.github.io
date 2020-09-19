@@ -9,13 +9,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: update contribs
+      - name: Get Updates
         run: |
-          sudo apt install python3-setuptools
+          sudo apt install python3-setuptools wheel
           pip3 install pygithub
           python3 fetch_contribs.py ${{ secrets.GIT_TOKEN }}
           python3 create_html.py ${{ secrets.GIT_TOKEN }}
-      - name: Update Contribs
+      - name: Commit
         uses: test-room-7/action-update-file@v1
         with:
           file-path: |
