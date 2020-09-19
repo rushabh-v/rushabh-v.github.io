@@ -1,0 +1,15 @@
+name: update-my-contributions
+on:
+  schedule:
+   - cron: "0 8 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: update contribs
+        run: |
+          pip install json pygithub
+          python featch_contribs.py ${{ secrets.GIT_TOKEN }}
+          python create_html.py ${{ secrets.GIT_TOKEN }}
