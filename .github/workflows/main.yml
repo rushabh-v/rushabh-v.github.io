@@ -13,5 +13,5 @@ jobs:
         run: |
           sudo apt install python3-setuptools
           pip3 install pygithub
-          python3 featch_contribs.py ${{ secrets.GIT_TOKEN }}
+          python3 fetch_contribs.py ${{ secrets.GIT_TOKEN }}
           python3 create_html.py ${{ secrets.GIT_TOKEN }}
