@@ -1,7 +1,8 @@
 name: update-my-contributions
-on:
-  schedule:
-   - cron: "* * * * *"
+on: [push]
+    
+#   schedule:
+#    - cron: "0 8 * * *"
 
 jobs:
   build:
