@@ -5,13 +5,21 @@ on: [push]
 #    - cron: "0 8 * * *"
 
 jobs:
-  build:
+  resources:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
       - name: update contribs
         run: |
           sudo apt install python3-setuptools
           pip3 install pygithub
           python3 fetch_contribs.py ${{ secrets.GIT_TOKEN }}
           python3 create_html.py ${{ secrets.GIT_TOKEN }}
+      - name: Update Contribs
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: |
+            contributions.html
+          commit-msg: Update resources
+          github-token: ${{ secrets.GIT_TOKEN }}
