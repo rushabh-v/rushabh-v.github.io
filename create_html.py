@@ -3,12 +3,14 @@ from github import Github
 
 import json
 
+with open('total_contrib', 'r') as f:
+    prev_contrib = int(f.read())
 
 g = Github(sys.argv[1])
 user = g.get_user()
+cur_contrib = 0
 
 start = """
-
 <body>
     <div id="root" class="content">
         <div class="header">
@@ -55,6 +57,7 @@ lang_colors = {
     'C++': 'rgb(243, 75, 125)',
     'Jupyter Notebook': 'rgb(218, 91, 11)',
     'JavaScript': 'rgb(255,255,0)',
+    'C': 'rgb(169,169,169)',
 }
 
 def add_row(contribs, key, is_pr):
@@ -70,6 +73,7 @@ def add_row(contribs, key, is_pr):
     n_days = contribs[key]['last_mod']
     stars = contribs[key]['stars']
     last_mod = ''
+    cur_contrib += (n_merged + n_open + n_closed)
     if n_days > 30: last_mod = str(n_days // 30) + " months ago"
     else: last_mod = str(n_days) + " days ago"
     if is_pr and n_merged == 0: return ""
@@ -126,7 +130,7 @@ if __name__ == '__main__':
     contribs = json.loads(contribs)
     prs = contribs['pulls']
     issues = contribs['issues']
-    
+
     def get_count_pr(d):
         return prs[d]['n_open'] + prs[d]['n_merged']
     def get_count_issue(d):
@@ -143,5 +147,11 @@ if __name__ == '__main__':
     for key in issues_keys:
         html += add_row(issues, key, False)
     html += end
+
+    if prev_contrib == cur_contrib:
+        exit(1)
+
+    with open('total_contribs', 'w') as f:
+        f.write(str(cur_contrib))
     with open('contributions.html', 'w') as f:
         f.write(html)
