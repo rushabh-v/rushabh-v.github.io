@@ -12,9 +12,11 @@ jobs:
       - name: Get Updates
         run: |
           sudo apt install python3-setuptools
+          git clone https://github.com/rushabh-v/Show-Your-Contributions
+          cp -r ./Show-Your-Contributions/* ./
           pip3 install pygithub
           python3 fetch_contribs.py ${{ secrets.GIT_TOKEN }}
-          python3 create_html.py ${{ secrets.GIT_TOKEN }}
+          python3 generate_doc.py ${{ secrets.GIT_TOKEN }}
       - name: Commit
         uses: test-room-7/action-update-file@v1
         with:
