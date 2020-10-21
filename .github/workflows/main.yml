@@ -1,10 +1,12 @@
 name: update-my-contributions
 on:
+  push:
+   paths: ".github/workflows/*"
   schedule:
    - cron: "0 0 * * *"
 
 jobs:
-  resources:
+  main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
