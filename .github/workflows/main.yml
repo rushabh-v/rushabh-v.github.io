@@ -26,5 +26,6 @@ jobs:
             contributions.html
             contributions.png
             total_contribs
+            profile_readme.txt
           commit-msg: Update resources
           github-token: ${{ secrets.GIT_TOKEN }}
