@@ -18,7 +18,7 @@ jobs:
           cp -r ./Show-Your-Contributions/* ./
           pip3 install pygithub
           python3 fetch_contribs.py ${{ secrets.GIT_TOKEN }}
-          python3 generate_doc.py ${{ secrets.GIT_TOKEN }} 5
+          python3 generate_doc.py ${{ secrets.GIT_TOKEN }} 4
       - name: Commit
         uses: test-room-7/action-update-file@v1
         with:
