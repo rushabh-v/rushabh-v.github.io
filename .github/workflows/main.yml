@@ -29,5 +29,3 @@ jobs:
             profile_readme.txt
           commit-msg: Update resources
           github-token: ${{ secrets.GIT_TOKEN }}
-
-
