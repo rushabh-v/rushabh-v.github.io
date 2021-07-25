@@ -1,0 +1,12 @@
+.abc {
+  background-color: white;
+  padding: 30px;
+  width: 50%;
+}
+@media screen and (max-width: 800px) {
+  .abc {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
